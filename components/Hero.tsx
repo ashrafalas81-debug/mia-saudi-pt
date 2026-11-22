@@ -1,119 +1,72 @@
 import type { ProgramSettings } from "@/lib/program";
 
-function formatDate(iso: string): string {
-  try {
-    return new Intl.DateTimeFormat("ar-SA", { day: "numeric", month: "long", year: "numeric" }).format(
-      new Date(iso + "T12:00:00")
-    );
-  } catch {
-    return iso;
-  }
-}
-
-const FACTS = ["10 محاضرات تدريبية", "20 ساعة شرح ومراجعة", "Live + Recorded", "350+ MCQ", "حالات إكلينيكية", "تطبيق مرافق"];
+const CHIPS = [
+  { v: "10", l: "أيام فقط" },
+  { v: "10", l: "محاضرات مركزة" },
+  { v: "Zoom", l: "مباشر + مسجل" },
+  { v: "App", l: "تطبيق مرافق" },
+];
 
 export default function Hero({ settings }: { settings: ProgramSettings }) {
   return (
-    <section id="top" className="relative bg-navy text-white overflow-hidden hero-grid">
-      <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full bg-royal/30 blur-3xl" />
-      <div className="absolute top-20 -right-40 w-[420px] h-[420px] rounded-full bg-cyan/20 blur-3xl" />
-      <div className="relative max-w-6xl mx-auto px-4 pt-28 pb-16 md:pt-36 md:pb-24 grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 text-xs text-silver mb-6">
-            <span className="w-2 h-2 rounded-full bg-cyan" />
-            برنامج مكثف — يبدأ {formatDate(settings.startDate)}
-          </div>
-          <h1 className="text-3xl md:text-5xl font-bold leading-[1.25] mb-4">
-            اختبارك السعودي أقرب مما تتوقع.
-            <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-l from-cyan to-gold">
-              جهّز نفسك خلال 10 أيام من المراجعة والتطبيق.
-            </span>
-          </h1>
-          <p className="text-silver/90 leading-8 mb-8 max-w-xl">
-            مراجعة مكثفة ومنظمة لأساسيات العلاج الطبيعي، مع شرح بتقنيات 3D Motion، وتدريب على الحالات
-            الإكلينيكية، وأكثر من 350 سؤالًا تدريبيًا، وتطبيق مرافق يساعدك تستعد للاختبار والمقابلات
-            الوظيفية بثقة أكبر.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 mb-10">
-            <a
-              href="#register"
-              className="bg-gold text-navy font-bold px-8 py-4 rounded-2xl text-center hover:brightness-110 transition shadow-lg shadow-gold/20"
-            >
-              سجّل في التجربة المجانية
-            </a>
-            <a
-              href="#method"
-              className="glass text-white font-semibold px-8 py-4 rounded-2xl text-center hover:bg-white/10 transition"
-            >
-              شاهد تجربة الشرح بتقنية 3D
-            </a>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {FACTS.map((f) => (
-              <div key={f} className="glass rounded-xl px-3 py-2.5 text-sm text-silver flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
-                {f}
-              </div>
-            ))}
-          </div>
-          <p className="mt-6 text-sm text-cyan/90">
-            ابدأ بتجربة مجانية: أول محاضرتين من MSK &amp; Sports Injuries.
-          </p>
+    <section id="program" className="relative bg-navy text-white overflow-hidden">
+      <div className="absolute inset-0 hero-grid opacity-60" />
+      <div className="absolute -top-32 -left-32 w-[480px] h-[480px] rounded-full bg-royal/25 blur-3xl" />
+      <div className="absolute -bottom-40 -right-24 w-[420px] h-[420px] rounded-full bg-cyan/10 blur-3xl" />
+
+      <div className="relative max-w-6xl mx-auto px-4 pt-32 pb-20 md:pt-40 md:pb-28 text-center">
+        <p className="inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/10 px-4 py-1.5 text-sm text-cyan font-semibold">
+          اختبار الترخيص السعودي للعلاج الطبيعي
+          <span className="font-en ltr">SCFHS</span>
+        </p>
+
+        <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-[1.25] tracking-tight">
+          عندك اختبار التصنيف السعودي؟
+          <span className="block mt-2 bg-gradient-to-l from-gold via-cyan to-gold bg-clip-text text-transparent">
+            جهّز نفسك في 10 أيام.
+          </span>
+        </h1>
+
+        <p className="mt-6 text-lg md:text-xl text-silver leading-9 max-w-2xl mx-auto">
+          <span className="font-en font-semibold text-white">Medical Intelligence Academy</span>{" "}
+          تقدّم لك برنامج{" "}
+          <span className="font-en font-semibold text-white">MIA Saudi PT</span>:
+          عشر محاضرات مركزة تغطي منهجك كاملًا، تطبيق مرافق ينظم مذاكرتك،
+          ومتابعة يومية شخصية من د. أشرف حتى يوم الاختبار.
+        </p>
+
+        <p className="mt-4 text-gold font-semibold">
+          مهما كان مستواك الحالي، الرحلة مصممة ترفع جاهزيتك لأعلى درجة ممكنة.
+        </p>
+
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="#register"
+            className="w-full sm:w-auto bg-gold text-navy text-lg font-bold px-10 py-4 rounded-2xl hover:brightness-110 transition shadow-lg shadow-gold/20"
+          >
+            سجّل الآن — الأسبوع الأول مجاني
+          </a>
+          <a
+            href="#curriculum"
+            className="w-full sm:w-auto border border-white/25 text-white font-semibold px-10 py-4 rounded-2xl hover:bg-white/5 transition"
+          >
+            شوف المحاضرات
+          </a>
         </div>
-        <HeroVisual />
+
+        <p className="mt-6 text-sm text-silver/80">
+          يبدأ البرنامج <span className="text-white font-bold">الخميس ٢٦ نوفمبر ٢٠٢٦</span> · مقاعد محدودة
+        </p>
+
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto">
+          {CHIPS.map((c) => (
+            <div key={c.l} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+              <p className="font-en text-2xl font-bold text-cyan ltr">{c.v}</p>
+              <p className="text-sm text-silver mt-1">{c.l}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
-  );
-}
-
-function HeroVisual() {
-  // Abstract anatomical-motion composition. Real 3D teaching footage from
-  // Dr. Ashraf's courses will replace/augment this panel when supplied.
-  return (
-    <div className="relative">
-      <div className="relative glass rounded-3xl p-6 md:p-8 card-shadow">
-        <div className="flex items-center justify-between mb-5">
-          <span className="text-xs text-silver/80 font-en">3D Motion Teaching</span>
-          <span className="text-[10px] text-cyan border border-cyan/40 rounded-full px-2 py-0.5">Shoulder Biomechanics</span>
-        </div>
-        <div className="relative aspect-square max-w-sm mx-auto">
-          <div className="absolute inset-0 animate-rotate-slow">
-            <svg viewBox="0 0 200 200" className="w-full h-full opacity-40">
-              <circle cx="100" cy="100" r="88" fill="none" stroke="#19BDE6" strokeWidth="0.6" strokeDasharray="3 5" />
-              <circle cx="100" cy="100" r="66" fill="none" stroke="#1457B8" strokeWidth="0.8" />
-            </svg>
-          </div>
-          <div className="absolute inset-0 grid place-items-center">
-            <div className="relative animate-floaty">
-              <svg viewBox="0 0 120 120" className="w-44 h-44 md:w-56 md:h-56">
-                <defs>
-                  <linearGradient id="bone" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#EAF1F7" />
-                    <stop offset="100%" stopColor="#19BDE6" />
-                  </linearGradient>
-                  <linearGradient id="muscle" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#D6AB62" />
-                    <stop offset="100%" stopColor="#1457B8" />
-                  </linearGradient>
-                </defs>
-                <circle cx="60" cy="46" r="20" fill="none" stroke="url(#bone)" strokeWidth="3" />
-                <path d="M60 66 Q60 92 52 108" fill="none" stroke="url(#bone)" strokeWidth="4" strokeLinecap="round" />
-                <path d="M60 66 Q74 78 88 96" fill="none" stroke="url(#bone)" strokeWidth="4" strokeLinecap="round" />
-                <path d="M42 40 Q60 22 80 38" fill="none" stroke="url(#muscle)" strokeWidth="5" strokeLinecap="round" opacity="0.9" />
-                <path d="M46 52 Q62 44 78 50" fill="none" stroke="#D6AB62" strokeWidth="2.5" strokeLinecap="round" opacity="0.7" />
-                <circle cx="60" cy="46" r="6" fill="#19BDE6" opacity="0.9" />
-              </svg>
-              <div className="absolute -top-1 -right-3 w-3 h-3 rounded-full bg-cyan pulse-ring" />
-            </div>
-          </div>
-          <div className="absolute top-2 right-2 glass rounded-lg px-2.5 py-1 text-[10px] text-silver font-en">Rotator Cuff</div>
-          <div className="absolute bottom-6 left-2 glass rounded-lg px-2.5 py-1 text-[10px] text-silver font-en">Scapulohumeral Rhythm</div>
-          <div className="absolute bottom-0 right-6 glass rounded-lg px-2.5 py-1 text-[10px] text-silver font-en">Humeral Head</div>
-        </div>
-        <p className="mt-5 text-center text-[11px] text-silver/70 leading-5">
-          عرض بصري توضيحي — تُضاف لقطات الشرح الأصلية بتقنية 3D من محاضرات د. أشرف عند توفيرها.
-        </p>
-      </div>
-    </div>
   );
 }

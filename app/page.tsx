@@ -1,14 +1,11 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
-import FreeWeek from "@/components/FreeWeek";
-import PromiseStrip from "@/components/PromiseStrip";
-import TeachingMethod from "@/components/TeachingMethod";
-import Curriculum from "@/components/Curriculum";
+import Lectures from "@/components/Lectures";
+import WhatYouGet from "@/components/WhatYouGet";
 import AppShowcase from "@/components/AppShowcase";
-import ClinicalCase from "@/components/ClinicalCase";
-import { FollowUp, Instructor, ExamPrep, Trust, FinalCTA, Footer } from "@/components/Sections";
+import FreeWeek from "@/components/FreeWeek";
 import RegisterForm from "@/components/RegisterForm";
-import FAQ from "@/components/FAQ";
+import { Footer } from "@/components/Sections";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { getProgramSettings } from "@/lib/supabase";
 
@@ -20,19 +17,11 @@ export default async function Home() {
     <main>
       <Nav />
       <Hero settings={settings} />
-      <FreeWeek />
-      <PromiseStrip />
-      <TeachingMethod settings={settings} />
-      <Curriculum />
+      <Lectures />
+      <WhatYouGet settings={settings} />
       <AppShowcase />
-      <ClinicalCase />
-      <FollowUp />
-      <Instructor />
-      <ExamPrep />
-      <Trust />
+      <FreeWeek settings={settings} />
       <RegisterForm settings={settings} />
-      <FAQ />
-      <FinalCTA settings={settings} />
       <Footer settings={settings} />
       <WhatsAppFloat settings={settings} />
     </main>
