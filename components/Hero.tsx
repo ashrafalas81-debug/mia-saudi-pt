@@ -1,142 +1,123 @@
+"use client";
+import { useEffect, useRef } from "react";
 import type { ProgramSettings } from "@/lib/program";
-import { AppIcon } from "@/components/AppShowcase";
-
-const PAINS = [
-  "لا تعرف من أين تبدأ",
-  "المواد التي درستها ضخمة والمنهج واسع",
-  "والاختبار يغطي كل شيء",
-];
-
-const CHIPS = [
-  { v: "10", l: "أيام فقط" },
-  { v: "10", l: "محاضرات مركزة" },
-  { v: "Zoom", l: "مباشر + مسجل" },
-  { v: "App", l: "تطبيق مرافق" },
-];
 
 export default function Hero({ settings }: { settings: ProgramSettings }) {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let w = (canvas.width = canvas.offsetWidth);
+    let h = (canvas.height = canvas.offsetHeight);
+    const motes = Array.from({ length: 34 }, (_, i) => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 2 + 0.8,
+      vy: -(Math.random() * 0.3 + 0.12),
+      vx: (Math.random() - 0.5) * 0.2,
+      alpha: Math.random() * 0.55 + 0.15,
+      color: i % 3 === 0 ? "216,174,100" : "25,189,230",
+    }));
+
+    const onResize = () => {
+      w = canvas.width = canvas.offsetWidth;
+      h = canvas.height = canvas.offsetHeight;
+    };
+    window.addEventListener("resize", onResize);
+
+    let raf = 0;
+    const draw = () => {
+      ctx.clearRect(0, 0, w, h);
+      for (const m of motes) {
+        m.x += m.vx;
+        m.y += m.vy;
+        if (m.y < -10) {
+          m.y = h + 10;
+          m.x = Math.random() * w;
+        }
+        ctx.beginPath();
+        ctx.arc(m.x, m.y, m.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${m.color}, ${m.alpha})`;
+        ctx.fill();
+      }
+      raf = requestAnimationFrame(draw);
+    };
+    draw();
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
+
   return (
-    <section id="program" className="relative bg-navy text-white overflow-hidden">
-      <div className="absolute inset-0 hero-grid opacity-60" />
-      <div className="absolute -top-32 -left-32 w-[480px] h-[480px] rounded-full bg-royal/25 blur-3xl" />
-      <div className="absolute -bottom-40 -right-24 w-[420px] h-[420px] rounded-full bg-cyan/10 blur-3xl" />
+    <section id="program" className="relative min-h-[92vh] flex items-center pt-24 pb-16 overflow-hidden bg-[#03060C] text-white">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <img
+          src="/images/hero-anatomy-3d.jpg"
+          alt="نموذج تشريحي حركي ثلاثي الأبعاد للعمود الفقري ومفصل الكتف والعضلات"
+          className="w-full h-full object-cover object-left opacity-85"
+        />
+        <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-55" />
+        <div className="absolute inset-0 bg-gradient-to-l from-[#03060C] via-[#03060C]/85 to-[#03060C]/15" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#03060C] via-transparent to-[#03060C]/65" />
+      </div>
 
-      <div className="relative max-w-6xl mx-auto px-4 pt-24 pb-12 md:pt-28 md:pb-16">
-        <div className="grid lg:grid-cols-[1.15fr_1fr] gap-12 items-center">
-          {/* copy */}
-          <div className="text-center lg:text-right">
-            <p className="inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/10 px-4 py-1.5 text-sm text-cyan font-semibold">
-              اختبار الترخيص السعودي للعلاج الطبيعي
-              <span className="font-en ltr">SCFHS</span>
-            </p>
-
-            <h1 className="mt-6 text-3xl md:text-4xl xl:text-[2.6rem] font-extrabold leading-[1.35] tracking-tight">
-              طالب أو خريج علاج طبيعي سعودي، عندك اختبار تصنيف قريب؟
-              <span className="block mt-2 bg-gradient-to-l from-gold via-cyan to-gold bg-clip-text text-transparent">
-                وفّرنا لك أول برنامج مخصص يأهّلك ويراجع معك كل المواد في 10 أيام فقط.
-              </span>
-            </h1>
-
-            <ul className="mt-4 space-y-1.5 text-silver/90 text-base max-w-xl mx-auto lg:mx-0">
-              {PAINS.map((p) => (
-                <li key={p} className="flex items-center gap-3 justify-center lg:justify-start">
-                  <span className="w-2 h-2 rounded-full bg-gold shrink-0" />
-                  {p}
-                </li>
-              ))}
-            </ul>
-
-            <p className="mt-4 text-base text-silver leading-7 max-w-xl mx-auto lg:mx-0">
-              <span className="font-en font-semibold text-white">Medical Intelligence Academy</span>{" "}
-              تقدّم لك برنامج{" "}
-              <span className="font-en font-semibold text-white">MIA Saudi PT</span>:
-              عشر محاضرات مركزة تغطي منهجك كاملًا، حالات محلولة بعد كل محاضرة،
-              تطبيق ينظم مذاكرتك، ومتابعة يومية شخصية من د. أشرف حتى يوم الاختبار.
-            </p>
-
-            <p className="mt-4 text-gold font-semibold">
-              مهما كان مستواك الحالي، الرحلة مصممة ترفع جاهزيتك لأعلى درجة ممكنة.
-            </p>
-
-            <div className="mt-6 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-              <a
-                href="#register"
-                className="w-full sm:w-auto bg-gold text-navy text-lg font-bold px-10 py-4 rounded-2xl hover:brightness-110 transition shadow-lg shadow-gold/20"
-              >
-                سجّل الآن — الأسبوع الأول مجاني
-              </a>
-              <a
-                href="#curriculum"
-                className="w-full sm:w-auto border border-white/25 text-white font-semibold px-10 py-4 rounded-2xl hover:bg-white/5 transition"
-              >
-                شاهد المحاضرات
-              </a>
-            </div>
-
-            <p className="mt-5 text-sm text-silver/80">
-              يبدأ البرنامج <span className="text-white font-bold">الخميس ٢٦ نوفمبر ٢٠٢٦</span> · {settings.seatsNote}
-            </p>
+      <div className="relative z-10 max-w-6xl mx-auto px-4 w-full">
+        <div className="max-w-2xl text-right">
+          <div className="inline-flex items-center gap-2 rounded-full border border-cyan/35 bg-[#090F1C]/80 backdrop-blur-md px-4 py-1.5 text-xs sm:text-sm text-cyan font-semibold">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan" />
+            </span>
+            <span>لطلاب وخريجي العلاج الطبيعي في السعودية</span>
+            <span className="font-en ltr text-white/80 text-xs">SCFHS · MOH</span>
           </div>
 
-          {/* visual */}
-          <div className="relative max-w-sm mx-auto w-full lg:max-w-none">
-            <div className="relative rounded-[2rem] border border-white/15 bg-white/5 p-3 shadow-2xl shadow-navy/60">
-              <div className="relative rounded-[1.5rem] overflow-hidden h-[360px] md:h-[400px]">
-                <img
-                  src="/videos/poster-acl-short.jpg"
-                  alt="نموذج تشريح الركبة بتقنية 3D من محاضرات البرنامج"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/25 to-transparent" />
-                <div className="absolute bottom-4 inset-x-4 flex items-end justify-between gap-3">
-                  <div className="text-right">
-                    <p className="font-en font-extrabold text-xl leading-6 ltr">MIA Saudi PT</p>
-                    <p className="text-xs text-silver/85 mt-1">برنامج العشرة أيام — شرح بتقنية 3D</p>
-                  </div>
-                  <span className="shrink-0 rounded-xl bg-gold text-navy font-en font-extrabold text-sm px-3 py-2 ltr">
-                    10 DAYS
-                  </span>
-                </div>
-              </div>
-            </div>
+          <h1 className="mt-6 text-4xl sm:text-5xl lg:text-[3.35rem] font-extrabold leading-[1.22] tracking-tight text-white">
+            اختبارك قريب.. وكلّه Cases؟
+            <span className="block mt-2 bg-gradient-to-l from-gold via-cyan to-gold bg-clip-text text-transparent animate-shimmer">
+              راجع كل موادك في ١٠ أيام فقط.
+            </span>
+          </h1>
 
-            {/* app badge */}
-            <div className="absolute -bottom-5 -right-3 sm:-right-6 flex items-center gap-3 rounded-2xl border border-white/15 bg-navy2/95 px-4 py-3 shadow-xl">
-              <AppIcon size={40} />
-              <div>
-                <p className="text-xs font-bold">التطبيق المرافق</p>
-                <p className="font-en text-[10px] text-cyan ltr">MIA Exam Companion</p>
-              </div>
-            </div>
+          <p className="mt-5 text-base sm:text-lg text-slate-300 leading-8 max-w-xl">
+            أول برنامج تأهيلي متكامل من <span className="font-en font-semibold text-white">MIA</span>: شرح{" "}
+            <strong className="text-white">3D على Zoom</strong> (مباشر أو مسجل)،{" "}
+            <strong className="text-cyan">تطبيق مرافق</strong> بكل أسئلة السنين، ومتابعة فردية من الدكتور مهما كان مستواك —{" "}
+            <strong className="text-gold">والأسبوع الأول مجانًا بالكامل.</strong>
+          </p>
 
-            {/* doctor photo slot — shows his photo once provided via admin settings */}
-            <div className="absolute -top-5 -left-3 sm:-left-6 flex items-center gap-3 rounded-2xl border border-white/15 bg-navy2/95 px-4 py-3 shadow-xl">
-              {settings.doctorPhoto ? (
-                <img
-                  src={settings.doctorPhoto}
-                  alt={settings.instructorAr}
-                  className="w-11 h-11 rounded-full object-cover border-2 border-gold"
-                />
-              ) : (
-                <span className="w-11 h-11 rounded-full bg-gradient-to-br from-royal to-cyan grid place-items-center text-white font-bold font-en text-xs border-2 border-gold/70">
-                  MIA
-                </span>
-              )}
-              <div>
-                <p className="text-xs font-bold">{settings.instructorAr}</p>
-                <p className="text-[10px] text-silver/70">محاضر البرنامج</p>
+          <div className="mt-6 grid grid-cols-2 gap-2.5 max-w-lg">
+            {[
+              { t: "١٠ أيام فقط · مراجعة شاملة", g: true },
+              { t: "شرح على Zoom مباشر أو مسجل", g: false },
+              { t: "تطبيق خاص بأسئلة السنين", g: false },
+              { t: "متابعة فردية 1:1 مع الدكتور", g: true },
+            ].map((p) => (
+              <div key={p.t} className="glass-dark rounded-xl px-3.5 py-2.5 flex items-center gap-2.5">
+                <span className={`w-2 h-2 rounded-full shrink-0 ${p.g ? "bg-gold" : "bg-cyan"}`} />
+                <span className="text-xs sm:text-sm font-semibold text-white">{p.t}</span>
               </div>
-            </div>
+            ))}
           </div>
-        </div>
 
-        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto">
-          {CHIPS.map((c) => (
-            <div key={c.l} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-center">
-              <p className="font-en text-2xl font-bold text-cyan ltr">{c.v}</p>
-              <p className="text-sm text-silver mt-1">{c.l}</p>
-            </div>
-          ))}
+          <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+            <a href="#register" className="inline-flex items-center justify-center gap-2.5 bg-gold text-[#03060C] text-base sm:text-lg font-extrabold px-8 py-4 rounded-2xl hover:brightness-110 transition shadow-xl shadow-gold/20">
+              <span>سجّل الآن — الأسبوع الأول مجانًا</span>
+            </a>
+            <a href="#app" className="inline-flex items-center justify-center gap-2 border border-white/20 bg-[#090F1C]/70 backdrop-blur-md text-white font-semibold px-7 py-4 rounded-2xl hover:border-cyan/50 transition">
+              <span>شاهد التطبيق المرافق</span>
+            </a>
+          </div>
+
+          <p className="mt-5 text-xs sm:text-sm text-slate-400">
+            البداية: <strong className="text-white">الخميس ٢٦ نوفمبر ٢٠٢٦</strong> · <span className="text-gold font-semibold">{settings.seatsNote}</span>
+          </p>
         </div>
       </div>
     </section>

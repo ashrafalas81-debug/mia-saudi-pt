@@ -12,15 +12,17 @@ const ACADEMIC = [
   { v: "other", label: "أخرى" },
 ];
 const ATTENDANCE = [
-  { v: "live", label: "حضور مباشر Live" },
-  { v: "recorded", label: "متابعة التسجيلات Recorded" },
+  { v: "live", label: "حضور مباشر على Zoom (Live)" },
+  { v: "recorded", label: "متابعة التسجيلات المسجلة (Recorded)" },
   { v: "both", label: "الاثنان مناسبان لي" },
 ];
 const INTEREST = [
   { v: "scfhs", label: "اختبار التصنيف السعودي SCFHS" },
+  { v: "moh", label: "تقييمات ومفاضلات وزارة الصحة MOH" },
   { v: "recruitment", label: "تقييم التوظيف بالمستشفيات" },
   { v: "interviews", label: "المقابلات الإكلينيكية" },
   { v: "all", label: "كل ما سبق" },
+  { v: "other", label: "أخرى" },
 ];
 
 const ERRORS: Record<string, string> = {
