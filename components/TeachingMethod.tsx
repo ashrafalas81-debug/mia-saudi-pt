@@ -30,7 +30,9 @@ const DEMOS = [
   },
 ];
 
-export default function TeachingMethod() {
+import type { ProgramSettings } from "@/lib/program";
+
+export default function TeachingMethod({ settings }: { settings: ProgramSettings }) {
   return (
     <section id="method" className="bg-navy text-white py-16 md:py-24 relative overflow-hidden">
       <div className="absolute top-0 left-1/3 w-[420px] h-[420px] rounded-full bg-royal/20 blur-3xl" />
@@ -56,6 +58,36 @@ export default function TeachingMethod() {
           ))}
         </div>
 
+        <h3 className="text-xl font-bold mb-2">نماذج حقيقية من الشرح بتقنية 3D</h3>
+        <p className="text-silver/70 text-sm mb-6 max-w-2xl leading-7">
+          مقتطفات مسجلة من أسلوب د. أشرف في شرح Anatomy &amp; Biomechanics باستخدام نماذج 3D
+          والتوضيح بالقلم مباشرة على النموذج. شغّل أي فيديو للمشاهدة — لا يعمل أي منهما تلقائيًا.
+        </p>
+        <div className="grid sm:grid-cols-2 gap-5 mb-14 max-w-2xl">
+          {[
+            { src: settings.demoVideo1, poster: "/videos/poster-acl-short.jpg", t: "ACL Injury — لمحة سريعة", d: "44 ثانية", en: "ACL tear mechanism — quick take" },
+            { src: settings.demoVideo2, poster: "/videos/poster-acl-full.jpg", t: "شرح ACL بتقنية 3D — كامل", d: "4:30 دقيقة", en: "Full 3D knee anatomy walkthrough" },
+          ].map((v) =>
+            v.src ? (
+              <figure key={v.src} className="glass rounded-2xl overflow-hidden">
+                <div className="bg-black/40 grid place-items-center p-3">
+                  <video
+                    controls
+                    preload="none"
+                    playsInline
+                    poster={v.poster}
+                    className="rounded-xl w-auto h-[380px] max-w-full"
+                    src={v.src}
+                  />
+                </div>
+                <figcaption className="p-4">
+                  <p className="font-semibold text-sm">{v.t}</p>
+                  <p className="font-en text-[11px] text-cyan/90 ltr text-left mt-0.5">{v.en} · {v.d}</p>
+                </figcaption>
+              </figure>
+            ) : null
+          )}
+        </div>
         <h3 className="text-xl font-bold mb-2">معرض تجارب الشرح ثلاثية الأبعاد</h3>
         <p className="text-silver/70 text-sm mb-6 max-w-2xl leading-7">
           أماكن مخصصة للقطات الأصلية من أسلوب د. أشرف في شرح Anatomy &amp; Biomechanics بتقنية 3D Motion.

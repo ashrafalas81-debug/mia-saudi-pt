@@ -25,6 +25,8 @@ export const PROGRAM_DEFAULTS = {
     "السلام عليكم، عندي استفسار عن برنامج MIA Saudi PT — 10-Day Intensive Preparation Program، وأرغب بمعرفة تفاصيل المحاضرات والتجربة المجانية.",
   whatsappSampleMessage:
     "السلام عليكم، أرغب بمشاهدة نموذج من الشرح بتقنية 3D لبرنامج MIA Saudi PT.",
+  demoVideo1: "/videos/demo-acl-short.mp4",
+  demoVideo2: "/videos/demo-acl-full.mp4",
   confirmationMessage:
     "تم تسجيل بياناتك في MIA Saudi PT Program. سيتم التواصل معك عبر واتساب بتفاصيل المحاضرات وخطوات الانضمام.",
 };

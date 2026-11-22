@@ -12,6 +12,8 @@ const EDITABLE = new Set([
   "whatsappSupport",
   "confirmationMessage",
   "seatsNote",
+  "demoVideo1",
+  "demoVideo2",
 ]);
 
 export async function GET() {

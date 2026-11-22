@@ -22,7 +22,7 @@ export default async function Home() {
       <Hero settings={settings} />
       <FreeWeek />
       <PromiseStrip />
-      <TeachingMethod />
+      <TeachingMethod settings={settings} />
       <Curriculum />
       <AppShowcase />
       <ClinicalCase />
