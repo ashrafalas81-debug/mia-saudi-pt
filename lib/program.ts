@@ -17,7 +17,7 @@ export const PROGRAM_DEFAULTS = {
   totalHours: 20,
   mcqTarget: 350,
   caseTarget: 20,
-  seatsNote: "مقاعد محدودة", // no invented number
+  seatsNote: "الأسبوع المجاني محدود بـ ٥٠ مقعدًا", // user-confirmed cap (50)
   price: null as string | null, // not announced yet - never invent
   registrationOpen: true,
   whatsappSupport: "201141999069", // editable from admin
@@ -27,6 +27,7 @@ export const PROGRAM_DEFAULTS = {
     "السلام عليكم، أرغب بمشاهدة نموذج من الشرح بتقنية 3D لبرنامج MIA Saudi PT.",
   demoVideo1: "/videos/demo-acl-short.mp4",
   demoVideo2: "/videos/demo-acl-full.mp4",
+  doctorPhoto: "" as string, // hero photo slot: set from admin settings once Dr. Ashraf provides his photo
   confirmationMessage:
     "تم تسجيل بياناتك في MIA Saudi PT Program. سيتم التواصل معك عبر واتساب بتفاصيل المحاضرات وخطوات الانضمام.",
 };

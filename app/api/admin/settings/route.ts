@@ -14,6 +14,7 @@ const EDITABLE = new Set([
   "seatsNote",
   "demoVideo1",
   "demoVideo2",
+  "doctorPhoto",
 ]);
 
 export async function GET() {

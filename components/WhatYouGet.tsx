@@ -4,7 +4,7 @@ const ITEMS = [
   {
     n: "01",
     title: "تطبيق عملي بعد كل محاضرة",
-    body: "حالات إكلينيكية تدريبية بعد كل محاضرة، ومراجعة لأسئلة تدريبية على نمط الاختبار من مصادر مشروعة (ليست أسئلة مسرّبة)، وخطة مراجعة منظمة تساعدك تتذكر كل موادك وتثبّتها.",
+    body: "حالة إكلينيكية محلولة بعد كل محاضرة، ومراجعة لأسئلة السنوات السابقة بنمط الاختبار، ونماذج تدريبية جاهزة، وخطة مراجعة منظمة تثبّت كل موادك.",
     tag: "Cases + Practice MCQs",
   },
   {
@@ -66,7 +66,7 @@ export default function WhatYouGet({ settings }: { settings: ProgramSettings }) 
         <div className="mt-12">
           <h3 className="text-2xl font-bold mb-2 text-center">نماذج حقيقية من الشرح بتقنية 3D</h3>
           <p className="text-silver/70 text-sm mb-8 text-center">
-            مقتطفات مسجلة من أسلوب د. أشرف — شغّل أي فيديو للمشاهدة، لا يعمل أي منهما تلقائيًا.
+            مقتطفات مسجلة من أسلوب د. أشرف — شغّل أي فيديو وشاهد بنفسك.
           </p>
           <div className="grid sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
             {[

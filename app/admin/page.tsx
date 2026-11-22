@@ -96,7 +96,7 @@ export default function AdminDashboard() {
     if (!settings) return;
     setSaving(true); setSavedMsg("");
     const editable: Record<string, unknown> = {};
-    for (const k of ["startDate","sessionTimes","freeLectureDates","registrationOpen","descriptionExtra","price","whatsappSupport","confirmationMessage","seatsNote","demoVideo1","demoVideo2"]) {
+    for (const k of ["startDate","sessionTimes","freeLectureDates","registrationOpen","descriptionExtra","price","whatsappSupport","confirmationMessage","seatsNote","demoVideo1","demoVideo2","doctorPhoto"]) {
       editable[k] = settings[k];
     }
     const res = await fetch("/api/admin/settings", {
@@ -328,6 +328,11 @@ export default function AdminDashboard() {
               <SField label="رابط فيديو الشرح 2 (كامل — شرح ACL بتقنية 3D)">
                 <input type="text" dir="ltr" value={String(settings.demoVideo2 || "")} onChange={(e) => setSettings({ ...settings, demoVideo2: e.target.value })}
                   placeholder="/videos/demo-acl-full.mp4"
+                  className="w-full rounded-xl border border-silver px-4 py-2.5 text-sm font-en" />
+              </SField>
+              <SField label="صورة د. أشرف في الواجهة (رابط الصورة — تُضاف عند توفيرها)">
+                <input type="text" dir="ltr" value={String(settings.doctorPhoto || "")} onChange={(e) => setSettings({ ...settings, doctorPhoto: e.target.value })}
+                  placeholder="https://... أو /images/doctor.jpg"
                   className="w-full rounded-xl border border-silver px-4 py-2.5 text-sm font-en" />
               </SField>
               <label className="flex items-center gap-3 text-sm font-semibold">
