@@ -52,7 +52,7 @@ export default function FreeWeek({ settings }: { settings: ProgramSettings }) {
         </div>
 
         <p className="mt-6 text-sm text-silver/85">
-          يبدأ البرنامج <span className="text-white font-bold">الخميس ٢٦ نوفمبر ٢٠٢٦</span> · مقاعد محدودة للأسبوع المجاني
+          يبدأ البرنامج <span className="text-white font-bold">الخميس ٢٦ نوفمبر ٢٠٢٦</span> · الأسبوع المجاني محدود بـ ٥٠ مقعدًا
         </p>
       </div>
     </section>

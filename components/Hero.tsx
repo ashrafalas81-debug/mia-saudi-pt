@@ -55,7 +55,7 @@ export default function Hero({ settings }: { settings: ProgramSettings }) {
         </div>
 
         <p className="mt-6 text-sm text-silver/80">
-          يبدأ البرنامج <span className="text-white font-bold">الخميس ٢٦ نوفمبر ٢٠٢٦</span> · مقاعد محدودة
+          يبدأ البرنامج <span className="text-white font-bold">الخميس ٢٦ نوفمبر ٢٠٢٦</span> · الأسبوع المجاني محدود بـ ٥٠ مقعدًا
         </p>
 
         <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto">

@@ -21,6 +21,12 @@ const ITEMS = [
   },
   {
     n: "04",
+    title: "أسئلة وحالات السنوات السابقة — كلها في مكان واحد",
+    body: "نحل معك حالات وأسئلة تدريبية مبنية على نمط أسئلة السنوات السابقة المستمدة من أهم الاختبارات (اختبارات وزارة الصحة، تقييمات التوظيف، واختبارات القبول والمقابلات) — محلولة ومراجعة ومنظمة في مكان واحد، بدل ما تتوه بين عشرات المصادر المتفرقة.",
+    tag: "Past-Years Style Questions, One Place",
+  },
+  {
+    n: "05",
     title: "شرح بتقنية 3D لأول مرة",
     body: "المحاضرات مشروحة بالكامل لأول مرة بتقنية 3D: تشوف التركيب والحركة والإصابة أمامك بدل الحفظ النظري. جرّب بنفسك من المقطعين هنا.",
     tag: "3D Motion Teaching",
@@ -41,7 +47,12 @@ export default function WhatYouGet({ settings }: { settings: ProgramSettings }) 
 
         <div className="grid md:grid-cols-2 gap-5">
           {ITEMS.map((it) => (
-            <div key={it.n} className="rounded-2xl border border-white/10 bg-white/5 p-6 md:p-7">
+            <div
+              key={it.n}
+              className={`rounded-2xl border border-white/10 bg-white/5 p-6 md:p-7 ${
+                it.n === "05" ? "md:col-span-2" : ""
+              }`}
+            >
               <div className="flex items-center gap-3 mb-3">
                 <span className="font-en text-gold font-extrabold text-xl">{it.n}</span>
                 <span className="font-en text-[11px] text-cyan/80 ltr">{it.tag}</span>
