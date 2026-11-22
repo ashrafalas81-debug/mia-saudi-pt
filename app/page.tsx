@@ -1,6 +1,7 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import FreeWeek from "@/components/FreeWeek";
+import PromiseStrip from "@/components/PromiseStrip";
 import TeachingMethod from "@/components/TeachingMethod";
 import Curriculum from "@/components/Curriculum";
 import AppShowcase from "@/components/AppShowcase";
@@ -20,6 +21,7 @@ export default async function Home() {
       <Nav />
       <Hero settings={settings} />
       <FreeWeek />
+      <PromiseStrip />
       <TeachingMethod />
       <Curriculum />
       <AppShowcase />
