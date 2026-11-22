@@ -30,14 +30,14 @@ export default function Hero({ settings }: { settings: ProgramSettings }) {
               <span className="font-en ltr">SCFHS</span>
             </p>
 
-            <h1 className="mt-6 text-3xl md:text-4xl xl:text-5xl font-extrabold leading-[1.35] tracking-tight">
+            <h1 className="mt-6 text-3xl md:text-4xl xl:text-[2.6rem] font-extrabold leading-[1.35] tracking-tight">
               طالب أو خريج علاج طبيعي سعودي، عندك اختبار تصنيف قريب؟
               <span className="block mt-2 bg-gradient-to-l from-gold via-cyan to-gold bg-clip-text text-transparent">
                 وفّرنا لك أول برنامج مخصص يأهّلك ويراجع معك كل المواد في 10 أيام فقط.
               </span>
             </h1>
 
-            <ul className="mt-5 space-y-2 text-silver/90 text-base max-w-xl mx-auto lg:mx-0">
+            <ul className="mt-4 space-y-1.5 text-silver/90 text-base max-w-xl mx-auto lg:mx-0">
               {PAINS.map((p) => (
                 <li key={p} className="flex items-center gap-3 justify-center lg:justify-start">
                   <span className="w-2 h-2 rounded-full bg-gold shrink-0" />
@@ -46,7 +46,7 @@ export default function Hero({ settings }: { settings: ProgramSettings }) {
               ))}
             </ul>
 
-            <p className="mt-5 text-base md:text-lg text-silver leading-8 max-w-xl mx-auto lg:mx-0">
+            <p className="mt-4 text-base text-silver leading-7 max-w-xl mx-auto lg:mx-0">
               <span className="font-en font-semibold text-white">Medical Intelligence Academy</span>{" "}
               تقدّم لك برنامج{" "}
               <span className="font-en font-semibold text-white">MIA Saudi PT</span>:
@@ -81,7 +81,7 @@ export default function Hero({ settings }: { settings: ProgramSettings }) {
           {/* visual */}
           <div className="relative max-w-sm mx-auto w-full lg:max-w-none">
             <div className="relative rounded-[2rem] border border-white/15 bg-white/5 p-3 shadow-2xl shadow-navy/60">
-              <div className="relative rounded-[1.5rem] overflow-hidden h-[380px] md:h-[420px]">
+              <div className="relative rounded-[1.5rem] overflow-hidden h-[360px] md:h-[400px]">
                 <img
                   src="/videos/poster-acl-short.jpg"
                   alt="نموذج تشريح الركبة بتقنية 3D من محاضرات البرنامج"
