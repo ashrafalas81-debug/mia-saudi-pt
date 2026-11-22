@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  @apply bg-white text-navy font-ar antialiased;
+}
+::selection {
+  background: #19bde6;
+  color: #07182d;
+}
+.font-en { font-family: var(--font-inter), sans-serif; }
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(25, 189, 230, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(25, 189, 230, 0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+.glass {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.card-shadow {
+  box-shadow: 0 20px 45px -20px rgba(7, 24, 45, 0.18);
+}
+.gold-underline {
+  background-image: linear-gradient(90deg, #d6ab62, #19bde6);
+  background-repeat: no-repeat;
+  background-size: 100% 3px;
+  background-position: 0 100%;
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-floaty { animation: floaty 6s ease-in-out infinite; }
+.animate-rotate-slow { animation: rotate-slow 40s linear infinite; }
+.pulse-ring::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 2px solid #19bde6;
+  animation: pulse-ring 2.2s ease-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-floaty, .animate-rotate-slow, .pulse-ring::after { animation: none !important; }
+  html { scroll-behavior: auto; }
+}
+input, select, textarea, button { font-family: inherit; }
+.ltr { direction: ltr; }
