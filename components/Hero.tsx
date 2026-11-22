@@ -2,9 +2,9 @@ import type { ProgramSettings } from "@/lib/program";
 import { AppIcon } from "@/components/AppShowcase";
 
 const PAINS = [
-  "مطلوب تراجع كل ما درسته من أول يوم",
-  "معظم المنهج لم يعد في ذاكرتك",
-  "ولا تعرف كيف تجمعه كله قبل الاختبار",
+  "لا تعرف من أين تبدأ",
+  "المواد التي درستها ضخمة والمنهج واسع",
+  "والاختبار يغطي كل شيء",
 ];
 
 const CHIPS = [
@@ -31,9 +31,9 @@ export default function Hero({ settings }: { settings: ProgramSettings }) {
             </p>
 
             <h1 className="mt-6 text-3xl md:text-4xl xl:text-5xl font-extrabold leading-[1.35] tracking-tight">
-              اختبارك السعودي كله حالات إكلينيكية…
+              طالب أو خريج علاج طبيعي سعودي، عندك اختبار تصنيف قريب؟
               <span className="block mt-2 bg-gradient-to-l from-gold via-cyan to-gold bg-clip-text text-transparent">
-                تخيّل تستعد له كاملًا في 10 أيام فقط.
+                وفّرنا لك أول برنامج مخصص يأهّلك ويراجع معك كل المواد في 10 أيام فقط.
               </span>
             </h1>
 
@@ -81,19 +81,23 @@ export default function Hero({ settings }: { settings: ProgramSettings }) {
           {/* visual */}
           <div className="relative max-w-sm mx-auto w-full lg:max-w-none">
             <div className="relative rounded-[2rem] border border-white/15 bg-white/5 p-3 shadow-2xl shadow-navy/60">
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                poster="/videos/poster-acl-short.jpg"
-                src={settings.demoVideo1}
-                className="rounded-[1.5rem] w-full h-[380px] md:h-[420px] object-cover"
-              />
-              <span className="absolute top-6 right-6 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 text-[11px] font-bold text-cyan">
-                معاينة من الشرح بتقنية 3D
-              </span>
+              <div className="relative rounded-[1.5rem] overflow-hidden h-[380px] md:h-[420px]">
+                <img
+                  src="/videos/poster-acl-short.jpg"
+                  alt="نموذج تشريح الركبة بتقنية 3D من محاضرات البرنامج"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/25 to-transparent" />
+                <div className="absolute bottom-4 inset-x-4 flex items-end justify-between gap-3">
+                  <div className="text-right">
+                    <p className="font-en font-extrabold text-xl leading-6 ltr">MIA Saudi PT</p>
+                    <p className="text-xs text-silver/85 mt-1">برنامج العشرة أيام — شرح بتقنية 3D</p>
+                  </div>
+                  <span className="shrink-0 rounded-xl bg-gold text-navy font-en font-extrabold text-sm px-3 py-2 ltr">
+                    10 DAYS
+                  </span>
+                </div>
+              </div>
             </div>
 
             {/* app badge */}
