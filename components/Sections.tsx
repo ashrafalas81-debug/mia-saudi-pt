@@ -13,9 +13,10 @@ export function Footer({ settings }: { settings: ProgramSettings }) {
             <p className="text-xs font-en ltr">MIA Saudi PT — 10-Day Intensive Preparation Program</p>
           </div>
         </div>
-        <p className="text-xs text-center leading-6">
-          Medical Intelligence Academy © 2026 — برنامج تدريبي مستقل، لا يمثل اعتمادًا رسميًا من أي جهة اختبار.
-        </p>
+        <div className="text-xs text-center leading-6">
+          <p>Medical Intelligence Academy © 2026 — برنامج تدريبي مستقل، لا يمثل اعتمادًا رسميًا من أي جهة اختبار.</p>
+          <a href="/privacy" className="inline-block mt-2 text-cyan hover:underline">سياسة الخصوصية | Privacy Policy</a>
+        </div>
       </div>
     </footer>
   );

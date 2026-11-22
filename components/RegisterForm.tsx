@@ -324,7 +324,7 @@ export default function RegisterForm({ settings }: { settings: ProgramSettings }
               />
               <span>
                 أوافق على استخدام بيانات التسجيل للتواصل معي بخصوص البرنامج عبر واتساب ووسائل التواصل
-                المعتمدة، وفق سياسة الخصوصية.
+                المعتمدة، وفق <a href="/privacy" target="_blank" className="text-royal font-semibold underline underline-offset-2">سياسة الخصوصية</a>.
               </span>
             </label>
 
