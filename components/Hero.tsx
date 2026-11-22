@@ -21,7 +21,7 @@ export default function Hero({ settings }: { settings: ProgramSettings }) {
       <div className="absolute -top-32 -left-32 w-[480px] h-[480px] rounded-full bg-royal/25 blur-3xl" />
       <div className="absolute -bottom-40 -right-24 w-[420px] h-[420px] rounded-full bg-cyan/10 blur-3xl" />
 
-      <div className="relative max-w-6xl mx-auto px-4 pt-28 pb-14 md:pt-36 md:pb-20">
+      <div className="relative max-w-6xl mx-auto px-4 pt-24 pb-12 md:pt-28 md:pb-16">
         <div className="grid lg:grid-cols-[1.15fr_1fr] gap-12 items-center">
           {/* copy */}
           <div className="text-center lg:text-right">
@@ -30,14 +30,14 @@ export default function Hero({ settings }: { settings: ProgramSettings }) {
               <span className="font-en ltr">SCFHS</span>
             </p>
 
-            <h1 className="mt-6 text-4xl md:text-5xl xl:text-6xl font-extrabold leading-[1.3] tracking-tight">
+            <h1 className="mt-6 text-3xl md:text-4xl xl:text-5xl font-extrabold leading-[1.35] tracking-tight">
               اختبارك السعودي كله حالات إكلينيكية…
               <span className="block mt-2 bg-gradient-to-l from-gold via-cyan to-gold bg-clip-text text-transparent">
                 تخيّل تستعد له كاملًا في 10 أيام فقط.
               </span>
             </h1>
 
-            <ul className="mt-6 space-y-2.5 text-silver/90 text-base md:text-lg max-w-xl mx-auto lg:mx-0">
+            <ul className="mt-5 space-y-2 text-silver/90 text-base max-w-xl mx-auto lg:mx-0">
               {PAINS.map((p) => (
                 <li key={p} className="flex items-center gap-3 justify-center lg:justify-start">
                   <span className="w-2 h-2 rounded-full bg-gold shrink-0" />
@@ -46,7 +46,7 @@ export default function Hero({ settings }: { settings: ProgramSettings }) {
               ))}
             </ul>
 
-            <p className="mt-6 text-lg md:text-xl text-silver leading-9 max-w-xl mx-auto lg:mx-0">
+            <p className="mt-5 text-base md:text-lg text-silver leading-8 max-w-xl mx-auto lg:mx-0">
               <span className="font-en font-semibold text-white">Medical Intelligence Academy</span>{" "}
               تقدّم لك برنامج{" "}
               <span className="font-en font-semibold text-white">MIA Saudi PT</span>:
@@ -58,7 +58,7 @@ export default function Hero({ settings }: { settings: ProgramSettings }) {
               مهما كان مستواك الحالي، الرحلة مصممة ترفع جاهزيتك لأعلى درجة ممكنة.
             </p>
 
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <a
                 href="#register"
                 className="w-full sm:w-auto bg-gold text-navy text-lg font-bold px-10 py-4 rounded-2xl hover:brightness-110 transition shadow-lg shadow-gold/20"
@@ -89,7 +89,7 @@ export default function Hero({ settings }: { settings: ProgramSettings }) {
                 preload="metadata"
                 poster="/videos/poster-acl-short.jpg"
                 src={settings.demoVideo1}
-                className="rounded-[1.5rem] w-full h-[400px] md:h-[460px] object-cover"
+                className="rounded-[1.5rem] w-full h-[380px] md:h-[420px] object-cover"
               />
               <span className="absolute top-6 right-6 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 text-[11px] font-bold text-cyan">
                 معاينة من الشرح بتقنية 3D
@@ -126,7 +126,7 @@ export default function Hero({ settings }: { settings: ProgramSettings }) {
           </div>
         </div>
 
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto">
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto">
           {CHIPS.map((c) => (
             <div key={c.l} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-center">
               <p className="font-en text-2xl font-bold text-cyan ltr">{c.v}</p>
