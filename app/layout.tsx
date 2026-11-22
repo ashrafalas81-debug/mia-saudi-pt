@@ -9,8 +9,28 @@ const ibmAr = IBM_Plex_Sans_Arabic({
 });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
+const OG_TITLE = "MIA Saudi PT | برنامج العشرة أيام المكثف للعلاج الطبيعي";
+const OG_DESC =
+  "استعد لاختبار الهيئة السعودية للتخصصات الصحية مع د. أشرف علاء مصطفى — شرح 3D Motion وتطبيق مرافق. سجّل الآن واحصل على أسبوع مجاني.";
+
 export const metadata: Metadata = {
-  title: "MIA Saudi PT | برنامج العشرة أيام المكثف للعلاج الطبيعي",
+  metadataBase: new URL("https://mia-saudi-pt.vercel.app"),
+  openGraph: {
+    type: "website",
+    url: "https://mia-saudi-pt.vercel.app",
+    siteName: "Medical Intelligence Academy",
+    title: OG_TITLE,
+    description: OG_DESC,
+    locale: "ar_AR",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "MIA Saudi PT" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: OG_TITLE,
+    description: OG_DESC,
+    images: ["/og-image.jpg"],
+  },
+  title:"MIA Saudi PT | برنامج العشرة أيام المكثف للعلاج الطبيعي",
   description:
     "برنامج مكثف لمراجعة أساسيات العلاج الطبيعي والاستعداد لاختبار الهيئة السعودية للتخصصات الصحية، مع شرح بتقنيات 3D Motion وتطبيق مرافق. من Medical Intelligence Academy - د. أشرف علاء مصطفى.",
 };

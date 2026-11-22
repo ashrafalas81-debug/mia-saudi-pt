@@ -140,9 +140,20 @@ export function Footer({ settings }: { settings: ProgramSettings }) {
             <p className="text-xs font-en ltr">MIA Saudi PT — 10-Day Intensive Preparation Program</p>
           </div>
         </div>
-        <p className="text-xs text-center leading-6">
-          Medical Intelligence Academy © 2026 — برنامج تدريبي مستقل، لا يمثل اعتمادًا رسميًا من أي جهة اختبار.
-        </p>
+        <a
+          href="https://www.instagram.com/medical_intelligence_academy"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-white transition"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+          </svg>
+          <span>تابعنا على إنستجرام</span>
+          <span className="font-en ltr">@medical_intelligence_academy</span>
+        </a>
       </div>
     </footer>
   );
