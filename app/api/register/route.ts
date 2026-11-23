@@ -4,7 +4,8 @@ import { dbConfigured, serviceClient, getProgramSettings } from "@/lib/supabase"
 
 const STATUSES = ["graduate", "internship", "final_year", "other"];
 const PREFS = ["live", "recorded", "both"];
-const INTERESTS = ["scfhs", "recruitment", "interviews", "all"];
+const INTERESTS = ["scfhs", "moh", "recruitment", "interviews", "all", "other"];
+const REG_TYPES = ["individual", "group4"];
 
 // naive per-IP rate limit (best-effort on serverless)
 const hits = new Map<string, { n: number; t: number }>();
@@ -44,6 +45,10 @@ export async function POST(req: NextRequest) {
   const attendance = String(body.attendancePreference || "");
   const interest = String(body.programInterest || "");
   const consent = body.consent === true;
+  const registrationType = String(body.registrationType || "");
+  const groupMembers = Array.isArray(body.groupMembers)
+    ? (body.groupMembers as unknown[]).map((m) => String(m || "").trim().slice(0, 200))
+    : [];
 
   if (!fullName || fullName.length < 3)
     return NextResponse.json({ ok: false, error: "invalid_name" }, { status: 422 });
@@ -55,6 +60,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, error: "invalid_attendance" }, { status: 422 });
   if (!INTERESTS.includes(interest))
     return NextResponse.json({ ok: false, error: "invalid_interest" }, { status: 422 });
+  if (!REG_TYPES.includes(registrationType))
+    return NextResponse.json({ ok: false, error: "invalid_regtype" }, { status: 422 });
+  if (registrationType === "group4" && (groupMembers.length !== 3 || groupMembers.some((m) => m.length < 5)))
+    return NextResponse.json({ ok: false, error: "invalid_group" }, { status: 422 });
+  const groupText = registrationType === "group4" ? groupMembers.join(" | ") : null;
   if (!consent)
     return NextResponse.json({ ok: false, error: "consent_required" }, { status: 422 });
 
@@ -82,6 +92,8 @@ export async function POST(req: NextRequest) {
         academic_status: academicStatus,
         attendance_preference: attendance,
         program_interest: interest,
+        registration_type: registrationType,
+        group_members: groupText,
         consent: true,
       })
       .eq("id", existing.id);
@@ -102,6 +114,8 @@ export async function POST(req: NextRequest) {
     verification_status: "pending",
     attendance_preference: attendance,
     program_interest: interest,
+    registration_type: registrationType,
+    group_members: groupText,
     consent: true,
     enrollment_status: "registered",
   });

@@ -17,8 +17,8 @@ export const PROGRAM_DEFAULTS = {
   totalHours: 20,
   mcqTarget: 350,
   caseTarget: 20,
-  seatsNote: "الأسبوع المجاني محدود بـ ٥٠ مقعدًا", // user-confirmed cap (50)
-  price: null as string | null, // not announced yet - never invent
+  seatsNote: "العرض حصري لأول ٥٠ مشترك", // user-confirmed cap (50)
+  price: "500 ريال — 300 ريال لأول 50 مشترك — 250 ريال للفرد في مجموعة 4" as string | null,
   registrationOpen: true,
   whatsappSupport: "201141999069", // editable from admin
   whatsappMessage:
@@ -208,7 +208,7 @@ export const CURRICULUM: CurriculumDay[] = [
 export const FAQ_ITEMS = [
   {
     q: "هل أول أسبوع مجاني؟",
-    a: "نعم، خلال الفترة التجريبية تقدر تحضر أول محاضرتين مجانًا للتعرف على البرنامج وطريقة الشرح.",
+    a: "نعم، الأسبوع الأول مجاني بالكامل: تحضر وتجرّب طريقة الشرح، وتاخد حاجات هتساعدك جدًا في المذاكرة.",
   },
   {
     q: "هل المحاضرات مباشرة أم مسجلة؟",
@@ -236,6 +236,6 @@ export const FAQ_ITEMS = [
   },
   {
     q: "هل يوجد سعر للاشتراك بعد التجربة المجانية؟",
-    a: "تُعلن تفاصيل الاشتراك للطلاب بعد تحديدها من إدارة البرنامج.",
+    a: "البرنامج الكامل (١٠ محاضرات + التطبيق) سعره ٥٠٠ ريال، وعليه خصم لأول ٥٠ مشترك فقط ليصبح ٣٠٠ ريال. ولو سجّلتوا ٤ طلاب مع بعض، كل طالب يدفع ٢٥٠ ريال فقط.",
   },
 ];

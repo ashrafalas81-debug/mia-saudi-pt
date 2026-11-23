@@ -26,6 +26,8 @@ const INTEREST = [
 ];
 
 const ERRORS: Record<string, string> = {
+  invalid_regtype: "فضلًا اختر: هتسجّل لوحدك ولا مع 3 من زمايلك؟",
+  invalid_group: "فضلًا اكتب أسماء وأرقام واتساب زمايلك الـ 3.",
   invalid_name: "فضلًا أدخل الاسم الكامل.",
   invalid_university: "فضلًا اختر أو اكتب اسم الجامعة.",
   invalid_status: "فضلًا اختر الحالة الأكاديمية.",
@@ -50,6 +52,8 @@ export default function RegisterForm({ settings }: { settings: ProgramSettings }
   const [phone, setPhone] = useState("");
   const [attendance, setAttendance] = useState("");
   const [interest, setInterest] = useState("");
+  const [regType, setRegType] = useState("");
+  const [mates, setMates] = useState(["", "", ""]);
   const [consent, setConsent] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -85,6 +89,8 @@ export default function RegisterForm({ settings }: { settings: ProgramSettings }
     if (!academic) return setError(ERRORS.invalid_status);
     if (!attendance) return setError(ERRORS.invalid_attendance);
     if (!interest) return setError(ERRORS.invalid_interest);
+    if (!regType) return setError(ERRORS.invalid_regtype);
+    if (regType === "group4" && mates.some((m) => m.trim().length < 5)) return setError(ERRORS.invalid_group);
     if (!consent) return setError(ERRORS.consent_required);
     if (!phoneHint) return setError(ERRORS.invalid_phone);
 
@@ -102,6 +108,8 @@ export default function RegisterForm({ settings }: { settings: ProgramSettings }
           phoneNational: phone,
           attendancePreference: attendance,
           programInterest: interest,
+          registrationType: regType,
+          groupMembers: regType === "group4" ? mates.map((m) => m.trim()) : [],
           consent,
         }),
       });
@@ -136,6 +144,7 @@ export default function RegisterForm({ settings }: { settings: ProgramSettings }
             <p className="text-navy/70 leading-8 mb-6">{done.message}</p>
             <div className="bg-silver/60 rounded-2xl p-5 text-right space-y-2.5 text-sm mb-6">
               <Row k="البرنامج" v="MIA Saudi PT — 10-Day Program" en />
+              <Row k="الأسبوع الأول" v="مجاني بالكامل" />
               <Row k="تاريخ البداية" v={formatDate(done.startDate)} />
               <Row k="حالة الرقم" v="بانتظار تأكيد الرقم" warn />
               <Row k="حالة التسجيل" v={done.duplicate ? "مسجل مسبقًا — تم تحديث بياناتك" : "تسجيل جديد مؤكد"} />
@@ -315,6 +324,28 @@ export default function RegisterForm({ settings }: { settings: ProgramSettings }
                   <Radio key={o.v} name="interest" checked={interest === o.v} onChange={() => setInterest(o.v)} label={o.label} />
                 ))}
               </div>
+            </Field>
+
+            <Field label="هتسجّل لوحدك ولا مع زمايلك؟" required>
+              <div className="grid grid-cols-1 gap-2">
+                <Radio name="regtype" checked={regType === "individual"} onChange={() => setRegType("individual")} label="لوحدي — 300 ريال (بدل 500)" />
+                <Radio name="regtype" checked={regType === "group4"} onChange={() => setRegType("group4")} label="مع 3 من زمايلي (مجموعة 4) — 250 ريال للفرد" />
+              </div>
+              {regType === "group4" && (
+                <div className="mt-3 space-y-2 rounded-2xl bg-gold/10 border border-gold/40 p-4">
+                  <p className="text-xs text-navy/70 leading-6">اكتب اسم كل زميل ورقم الواتساب بتاعه عشان نثبّت عرض المجموعة ليكم.</p>
+                  {mates.map((m, i) => (
+                    <input
+                      key={i}
+                      type="text"
+                      value={m}
+                      onChange={(e) => setMates(mates.map((x, j) => (j === i ? e.target.value : x)))}
+                      placeholder={`الزميل ${i + 1}: الاسم + رقم الواتساب`}
+                      className="w-full rounded-xl border border-navy/15 px-4 py-3 text-navy focus:outline-none focus:border-royal"
+                    />
+                  ))}
+                </div>
+              )}
             </Field>
 
             <label className="flex items-start gap-3 text-sm text-navy/75 cursor-pointer">

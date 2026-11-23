@@ -15,7 +15,7 @@ export async function GET() {
 
   const headers = [
     "full_name","university","academic_status","country_iso","phone_e164",
-    "whatsapp_verified","attendance_preference","program_interest",
+    "whatsapp_verified","attendance_preference","program_interest","registration_type","group_members",
     "enrollment_status","admin_notes","created_at",
   ];
   const esc = (v: unknown) => {

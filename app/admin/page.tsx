@@ -12,6 +12,8 @@ interface Reg {
   whatsapp_verified: boolean;
   attendance_preference: string;
   program_interest: string;
+  registration_type?: string;
+  group_members?: string | null;
   enrollment_status: string;
   admin_notes: string | null;
   created_at: string;
@@ -222,6 +224,7 @@ export default function AdminDashboard() {
                         <th className="text-right px-4 py-3">واتساب</th>
                         <th className="text-right px-4 py-3">المتابعة</th>
                         <th className="text-right px-4 py-3">الاهتمام</th>
+                        <th className="text-right px-4 py-3">نوع التسجيل</th>
                         <th className="text-right px-4 py-3">القبول</th>
                         <th className="text-right px-4 py-3">ملاحظات</th>
                         <th className="text-right px-4 py-3">التاريخ</th>
@@ -252,6 +255,11 @@ export default function AdminDashboard() {
                           </td>
                           <td className="px-4 py-3 text-navy/70">{AR_PREF[r.attendance_preference] || r.attendance_preference}</td>
                           <td className="px-4 py-3 text-navy/70">{AR_INTEREST[r.program_interest] || r.program_interest}</td>
+                          <td className="px-4 py-3 text-navy/70 text-xs leading-5">
+                            {r.registration_type === "group4" ? (
+                              <><span className="font-bold text-royal">مجموعة 4</span><br />{r.group_members}</>
+                            ) : "فردي"}
+                          </td>
                           <td className="px-4 py-3">
                             <select
                               value={r.enrollment_status}

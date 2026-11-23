@@ -12,8 +12,8 @@ export default function FreeWeek({ settings }: { settings: ProgramSettings }) {
           الأسبوع الأول مجاني بالكامل
         </h2>
         <p className="mt-5 text-lg md:text-xl text-silver leading-9 max-w-2xl mx-auto">
-          احضر أول محاضرتين مجانًا — مباشرة على Zoom، والتسجيل متاح لو فاتتك —
-          مع متابعة شخصية من د. أشرف من أول يوم. جرّب طريقة الشرح بنفسك قبل أي التزام.
+          هتحضر وتجرّب وتشوف طريقة الشرح بنفسك، وكمان هتاخد حاجات هتساعدك جدًا في المذاكرة —
+          مباشرة على Zoom والتسجيل متاح لو فاتتك، مع متابعة شخصية من د. أشرف من أول يوم.
         </p>
 
         <div className="mt-10 grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto text-center">
@@ -29,6 +29,28 @@ export default function FreeWeek({ settings }: { settings: ProgramSettings }) {
             <p className="font-en text-cyan font-bold text-sm ltr">1:1 Follow-up</p>
             <p className="mt-1 font-semibold">متابعة يومية من الدكتور</p>
           </div>
+        </div>
+
+        <div id="pricing" className="mt-12 rounded-3xl bg-white text-navy p-6 md:p-8 text-right max-w-2xl mx-auto shadow-xl shadow-navy/40">
+          <p className="text-center text-sm font-bold text-royal">بعد الأسبوع المجاني</p>
+          <h3 className="text-center text-2xl md:text-3xl font-extrabold mt-2">البرنامج الكامل</h3>
+          <p className="text-center text-navy/70 mt-2">١٠ محاضرات + التطبيق المرافق</p>
+          <div className="mt-6 grid sm:grid-cols-2 gap-4">
+            <div className="rounded-2xl border-2 border-navy/10 p-5 text-center">
+              <p className="font-semibold">اشتراك فردي</p>
+              <p className="mt-3 text-navy/45 line-through text-lg">٥٠٠ ريال</p>
+              <p className="text-4xl font-extrabold text-royal">٣٠٠ <span className="text-lg">ريال</span></p>
+              <p className="mt-2 text-xs text-navy/60">خصم لأول ٥٠ مشترك فقط</p>
+            </div>
+            <div className="relative rounded-2xl border-2 border-gold bg-gold/10 p-5 text-center">
+              <span className="absolute -top-3 right-1/2 translate-x-1/2 bg-gold text-navy text-xs font-extrabold rounded-full px-3 py-1">الأوفر</span>
+              <p className="font-semibold">مجموعة ٤ طلاب</p>
+              <p className="mt-3 text-navy/45 line-through text-lg">٥٠٠ ريال</p>
+              <p className="text-4xl font-extrabold text-royal">٢٥٠ <span className="text-lg">ريال</span></p>
+              <p className="mt-2 text-xs text-navy/60">للطالب الواحد — سجّل مع ٣ من زمايلك</p>
+            </div>
+          </div>
+          <p className="mt-5 text-center text-sm font-bold text-red-600">العرض حصري لأول ٥٠ مشترك فقط — سجّل اسمك الآن</p>
         </div>
 
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">

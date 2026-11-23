@@ -46,3 +46,7 @@ end $$;
 drop trigger if exists registrations_touch on public.registrations;
 create trigger registrations_touch before update on public.registrations
   for each row execute function public.touch_updated_at();
+
+-- 2026-11-23: group registration (individual / group of 4)
+alter table public.registrations add column if not exists registration_type text not null default 'individual';
+alter table public.registrations add column if not exists group_members text;
